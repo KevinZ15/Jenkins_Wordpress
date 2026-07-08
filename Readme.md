@@ -1,3 +1,3 @@
-Ambiente completo de WordPress + MySQL orquestado con Docker Compose sobre
-Docker Desktop (Windows), versionado con Git y desplegado automáticamente
-mediante un pipeline de Jenkins que también corre en Docker.
+Ambiente completo de con Jenkins para desplegar automaticamente un ambiente
+mediante pipeline WordPress y MySQL con Docker Compose sobreDocker Desktor 
+y uso de git.
