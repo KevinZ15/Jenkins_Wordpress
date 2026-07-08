@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/KevinZ15/Jenkins_Wordpress.git'
+                git branch: 'master', url: 'https://github.com/KevinZ15/Jenkins_Wordpress.git'
             }
         }
 
