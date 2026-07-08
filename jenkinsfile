@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/KevinZ15/Jenkins_Wordpress.git'
+            }
+        }
+
+        stage('Detener ambiente') {
+            steps {
+                sh 'docker compose down'
+            }
+        }
+
+        stage('Levantar ambiente') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
+
+        stage('Verificar despliegue') {
+            steps {
+                sh 'docker ps'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Despliegue de wp-upi completado. WordPress disponible en http://localhost:8085'
+        }
+        failure {
+            echo 'El despliegue fallo. Revisar logs con: docker compose logs'
+        }
+    }
+}

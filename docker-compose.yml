@@ -1,0 +1,44 @@
+services:
+
+  db-upi:
+    image: mysql:8.0
+    container_name: db-upi
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: RootUpi2026!
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: WpUpi2026!
+    volumes:
+      - vol-db:/var/lib/mysql
+    networks:
+      - red-upi
+
+  wp-upi:
+    image: wordpress:6.5-apache
+    container_name: wp-upi
+    restart: always
+    depends_on:
+      - db-upi
+    ports:
+      - "8085:80"
+    environment:
+      WORDPRESS_DB_HOST: db-upi:3306
+      WORDPRESS_DB_NAME: wpdb
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: WpUpi2026!
+    volumes:
+      - vol-wp:/var/www/html
+    networks:
+      - red-upi
+
+volumes:
+  vol-db:
+    name: vol-db
+  vol-wp:
+    name: vol-wp
+
+networks:
+  red-upi:
+    name: red-upi
+    driver: bridge
