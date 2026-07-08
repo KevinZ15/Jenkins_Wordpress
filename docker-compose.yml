@@ -1,3 +1,5 @@
+name: wp-upi
+
 services:
 
   db-upi:
